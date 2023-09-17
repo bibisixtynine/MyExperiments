@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyTraining Saint-Nazaire ✈️</title>
+    <style>
+        body {
+            background: linear-gradient(to top, #4A90E2, #2A5DAB);
+            background: linear-gradient(to bottom, #8B4513, #A0522D);
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(to bottom, #333, #111);
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            padding: 40px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.4;
+        }
+
+        footer {
+            background: linear-gradient(to bottom, #333, #111);
+            text-align: center;
+            padding: 10px;
+        }
+
+        footer p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .emoji {
+            font-size: 24px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue chez SkyTraining Saint-Nazaire ✈️</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#cours">Cours de pilotage 🛩️</a></li>
+            <li><a href="#simulateur">Simulateur de vol Alsim GSim 🕹️</a></li>
+            <li><a href="#contact">Nous contacter 📞</a></li>
+        </ul>
+    </nav>
+    <section id="cours">
+        <h2>Cours de pilotage pour adolescents 🎓</h2>
+        <p>Apprenez à piloter l'avion DA40 avec notre programme spécialement conçu pour les jeunes passionnés d'aviation. 🚀</p>
+        <p>Notre mini-cours d'introduction au DA40 et nos instructeurs adolescents vous prépareront pour des aventures aériennes passionnantes. ✈️</p>
+    </section>
+    <section id="simulateur">
+        <h2>Simulateur de vol Alsim GSim 🎮</h2>
+        <p>Préparez-vous au pilotage réel avec notre simulateur de vol de pointe, l'Alsim GSim. 🌟</p>
+        <p>Les adolescents peuvent se familiariser avec l'avion DA40 et améliorer leurs compétences de vol en toute sécurité. 🛫</p>
+    </section>
+    <section id="contact">
+        <h2>Contactez-nous 📬</h2>
+        <p>Adresse : 123 Rue de l'Aviation, Saint-Nazaire 🏢</p>
+        <p>Téléphone : +33 1 23 45 67 89 ☎️</p>
+        <p>Email : info@skytraining-saintnazaire.com 📧</p>
+    </section>
+    <footer>
+        <p>&copy; 2023 SkyTraining Saint-Nazaire 🌐</p>
+    </footer>
+
+    <!-- L'avion emoji qui suit la souris et pointe vers elle -->
+    <div class="emoji" id="airplane">✈️</div>
+
+    <script>
+        // Code JavaScript pour faire avancer l'avion emoji vers la souris
+        const airplane = document.getElementById("airplane");
+
+        // Récupère les coordonnées de la souris
+        let mouseX = 0;
+        let mouseY = 0;
+
+
+        // Lorsque la souris bouge, on exécute la fonction
+        document.addEventListener("mousemove", (e) => {
+            // Récupère les coordonnées de la souris
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // Calcule l'angle entre l'avion et la souris
+            const dx = mouseX - (airplane.offsetLeft + airplane.offsetWidth / 2);
+            const dy = mouseY - (airplane.offsetTop + airplane.offsetHeight / 2);
+            const angle = Math.atan2(dy, dx);
+
+            // Applique la transformation pour faire pointer l'avion vers la souris
+            airplane.style.transform = `translate(-50%, -50%) rotate(${angle + Math.PI / 4}rad)`;
+
+            // Calcule la nouvelle position de l'avion pour le faire avancer
+            const speed = 2; // Ajustez la vitesse d'avancement
+            const newX = airplane.offsetLeft + speed * Math.cos(angle);
+            const newY = airplane.offsetTop + speed * Math.sin(angle);
+
+            // Déplace l'avion vers la nouvelle position
+            airplane.style.left = newX + "px";
+            airplane.style.top = newY + "px";
+        });
+
+        // lorsque la souris ne bouge pas, on continue à faire avancer l'avion vers la souris avec un timer
+        setInterval()
+
+
+    </script>
+</body>
+</html>

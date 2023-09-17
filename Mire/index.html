@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rectangles sur Canvas</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="rectanglesCanvas"></canvas>
+
+    <script>
+        // Récupérer le canvas et son contexte
+        var canvas = document.getElementById('rectanglesCanvas');
+        var context = canvas.getContext('2d');
+
+        context.translate(1.5, 1.5) 
+
+        // Redimensionner le canvas en fonction de la taille de la fenêtre
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            // HACK pour désactiver l'antialiasing sur des lignes de 1px horizontales et verticales
+            context.translate(1.5, 1.5)
+             
+            drawRectangles(); // Redessiner les rectangles après le redimensionnement
+        }
+
+        // Appeler resizeCanvas au chargement de la page et lorsqu'elle est redimensionnée
+        window.addEventListener('load', resizeCanvas);
+        window.addEventListener('resize', resizeCanvas);
+
+        // Liste des couleurs de tracé
+        var strokeColors = ['red', 'green', 'blue', 'white', 'red', 'green', 'blue', 'black'];
+        var currentStrokeColorIndex = 0;
+
+        // Couleurs de fond
+        var backgroundColors = ['black', 'black', 'black', 'black', 'white', 'white', 'white', 'white'];
+        var currentBackgroundColorIndex = 0;
+
+        // Fonction pour dessiner les rectangles avec la couleur actuelle
+        function drawRectangles() {
+            console.log("draw with color " + strokeColors[currentStrokeColorIndex])
+            
+            // Utiliser la couleur de fond pour clearRect
+            context.fillStyle = backgroundColors[currentBackgroundColorIndex];
+            context.fillRect(0, 0, canvas.width-3, canvas.height-3);
+            
+            // Réinitialiser la couleur de fond à transparent
+            context.fillStyle = 'transparent';
+
+            // Variables pour la taille et la position initiales des rectangles
+            var x = 0;
+            var y = 0;
+            var width = canvas.width-3;
+            var height = canvas.height-3;
+
+            // Définir la couleur de tracé
+            context.strokeStyle = strokeColors[currentStrokeColorIndex];
+
+            while (width > 0 && height > 0) {
+                context.strokeRect(x, y, width, height); // Tracé du rectangle avec la couleur de tracé
+                x += 10;
+                y += 10;
+                width -= 20;
+                height -= 20;
+            }
+        }
+
+        // Initial colors
+        drawRectangles();
+
+        // Fonction pour passer à la couleur suivante
+        function nextColor() {
+            currentStrokeColorIndex = (currentStrokeColorIndex + 1) % strokeColors.length;
+            currentBackgroundColorIndex = (currentBackgroundColorIndex + 1) % backgroundColors.length;
+            drawRectangles();
+        }
+
+        // Event listener pour clic, touche, et toucher
+        canvas.addEventListener('click', nextColor);
+
+        window.addEventListener('keydown', function (event) {
+            if (event.key === ' ' || event.key === 'Enter') {
+                nextColor();
+            }
+        });
+
+        canvas.addEventListener('touchstart', nextColor);
+    </script>
+</body>
+</html>
+
+

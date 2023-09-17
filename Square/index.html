@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Square in Parent</title>
+    <style>
+
+
+        .parent {
+            height: 100%; /* Set the parent's height to 100% of its container */
+            height: 0; /* Initially, set the height to 0 */
+            padding-bottom: 100%; /* Make the height equal to the width to create a square */
+            position: relative; /* Enable positioning of child elements */
+        }
+
+        .square {
+            position: absolute; /* Position the square within the parent */
+            top: 0;
+            left: 0;
+            width: 100%; /* Make the square take the entire width of the parent */
+            height: 100%; /* Make the square take the entire height of the parent */
+            background-color: blue; /* Change this to your desired background color */
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="square"></div>
+    </div>
+</body>
+</html>

@@ -44,16 +44,19 @@ function Text(text) {
 }
 
 // Define a Circle function
-function Circle(radius) {
+function Circle() {
     const circleElement = document.createElement('div');
-    circleElement.style.width = `${2 * radius}px`;
-    circleElement.style.height = `${2 * radius}px`;
+    // set the width and height of the view so it is a square of the width or height (depending which is the greater) of the parent container
+    circleElement.style.width = '100%';
+    circleElement.style.height = '100%';
+    
+
     circleElement.style.borderRadius = '50%';
     circleElement.style.backgroundColor = 'blue'; // You can set the default color here
 
     const circleObj = {
         element: circleElement,
-        backgroundColor: function (color) {
+        foregroundColor: function (color) {
             if (color) {
                 circleElement.style.backgroundColor = color;
             }
@@ -167,15 +170,16 @@ function Body(...children) {
 
 
 
-
+/*
 Body(
     Text("My First Web Site")
         .fontSize("50px"),
     Text("designed with JavaScriptUI"),
     Spacer(),
     HStack(
-        Circle(50),
-        Circle(50)
+        Circle()
+            .foregroundColor("red"),
+        Circle()
     ),
     Spacer(),
     Text("click me")
@@ -191,11 +195,18 @@ Body(
         Spacer(),
         Text("I'm happy").backgroundColor("red"),
         Spacer(),
-        Circle(20),
+        Circle(),
         Spacer()
     ),
     Spacer()
         
+)
+*/
+
+Body(
+    Text("My First Web Site"),
+    Circle(),
+    Text("So cool !")
 )
 
 
