@@ -45,47 +45,55 @@ function Text(text) {
 
 // Define a Circle function
 function Circle() {
-    const circleElement = document.createElement('div');
-    // set the width and height of the view so it is a square of the width or height (depending which is the greater) of the parent container
-    circleElement.style.width = '100%';
-    circleElement.style.height = '100%';
-    
+    const element = document.createElement('div');
+    element.style.width = '100px'; // Set a default size (adjust as needed)
+    element.style.height = '100px'; // Set a default size (adjust as needed)
+    element.style.borderRadius = '50%';
+    element.style.backgroundColor = 'blue'; // You can set the default color here
 
-    circleElement.style.borderRadius = '50%';
-    circleElement.style.backgroundColor = 'blue'; // You can set the default color here
+    // Center the circle horizontally
+    element.style.display = 'flex';
+    element.style.justifyContent = 'center';
+    element.style.alignItems = 'center';
+    element.style.margin = 'auto';
 
     const circleObj = {
-        element: circleElement,
+        element: element,
         foregroundColor: function (color) {
             if (color) {
-                circleElement.style.backgroundColor = color;
+                element.style.backgroundColor = color;
             }
             return circleObj;
         },
         onClick: function (callback) {
             if (callback) {
-                circleElement.addEventListener('click', callback);
-                circleElement.style.cursor = 'pointer';
-            }
-            return circleObj;
-        },
-        radius: function (newRadius) {
-            if (newRadius) {
-                circleElement.style.width = `${2 * newRadius}px`;
-                circleElement.style.height = `${2 * newRadius}px`;
+                element.addEventListener('click', callback);
+                element.style.cursor = 'pointer';
             }
             return circleObj;
         },
     };
 
-    // Center the circle horizontally and vertically
-    circleElement.style.display = 'flex';
-    circleElement.style.justifyContent = 'center';
-    circleElement.style.alignItems = 'center';
-    circleElement.style.margin = 'auto'; // Center the circle horizontally
+    // Function to calculate and set the minimum dimension as the size
+    const setCircleSize = () => {
+        const containerWidth = element.parentElement.clientWidth;
+        const containerHeight = element.parentElement.clientHeight;
+        console.log('containerWidth', containerWidth, 'containerHeight', containerHeight);
+        const minDimension = Math.min(containerWidth, containerHeight);
+        element.style.width = containerWidth + 'px';
+        element.style.height = containerWidth + 'px';
+    };
+
+    // Listen for container size changes and adjust the size accordingly
+    const observer = new ResizeObserver(setCircleSize);
+    //observer.observe(element);
 
     return circleObj;
 }
+
+
+
+
 
 // Define an HStack function
 function HStack(...children) {
@@ -112,7 +120,7 @@ function VStack(...children) {
     const stackElement = document.createElement('div');
     stackElement.style.display = 'flex';
     stackElement.style.flexDirection = 'column';
-    stackElement.style.justifyContent = 'center'; // Center children vertically
+    stackElement.style.justifyContent = 'space-between'; // Center children vertically
 
     children.forEach((child) => {
         if (child && child.element) {
@@ -144,7 +152,7 @@ function Body(...children) {
     const bodyElement = document.createElement('div');
     bodyElement.style.display = 'flex';
     bodyElement.style.flexDirection = 'column';
-    bodyElement.style.justifyContent = 'center'; // Center children vertically
+    bodyElement.style.justifyContent = 'space-between'; // Center children vertically
 
     bodyElement.style.width = '100%';
     bodyElement.style.height = '100%';
@@ -170,7 +178,7 @@ function Body(...children) {
 
 
 
-/*
+
 Body(
     Text("My First Web Site")
         .fontSize("50px"),
@@ -201,14 +209,32 @@ Body(
     Spacer()
         
 )
-*/
+/*
 
 Body(
+    Spacer(),
+    HStack(
+        Circle().foregroundColor("red"),
+        Circle().foregroundColor("blue"),
+    ),
+    Spacer(),
     Text("My First Web Site"),
-    Circle(),
-    Text("So cool !")
+    Spacer(),
+    Text("So cool !"),
+    Spacer(),
+    HStack(
+        Text("Hello World")
+        .backgroundColor("red"),
+        Text("I'm Robert")
+        .backgroundColor("blue"),
+        Text("I'm happy")
+        .onClick(() => alert("Ouch !"))
+    ),
+    Spacer(),
+    Text("I'm happy"),
+    Spacer()
 )
-
+*/
 
 
 
