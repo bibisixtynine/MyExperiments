@@ -1,188 +1,29 @@
 // main.js
 
-// Define a Text function with background and foreground color modifiers
-function Text(text) {
-    const element = document.createElement('div');
-    element.textContent = text;
-
-    const textObj = {
-        element: element,
-        onClick: function (callback) {
-            if (callback) {
-                element.addEventListener('click', callback);
-                element.style.cursor = 'pointer';
-            }
-            return textObj;
-        },
-        backgroundColor: function (color) {
-            if (color) {
-                element.style.backgroundColor = color;
-            }
-            return textObj;
-        },
-        foregroundColor: function (color) {
-            if (color) {
-                element.style.color = color;
-            }
-            return textObj;
-        },
-        fontSize: function (size) {
-            if (size) {
-                element.style.fontSize = size;
-            }
-            return textObj;
-        },
-    };
-
-    // Center the text horizontally
-    element.style.display = 'flex';
-    element.style.justifyContent = 'center';
-    element.style.alignItems = 'center';
-    element.style.margin = 'auto';
-
-    return textObj;
-}
-
-// Define a Circle function
-function Circle() {
-    const element = document.createElement('div');
-    element.style.width = '100px'; // Set a default size (adjust as needed)
-    element.style.height = '100px'; // Set a default size (adjust as needed)
-    element.style.borderRadius = '50%';
-    element.style.backgroundColor = 'blue'; // You can set the default color here
-
-    // Center the circle horizontally
-    element.style.display = 'flex';
-    element.style.justifyContent = 'center';
-    element.style.alignItems = 'center';
-    element.style.margin = 'auto';
-
-    const circleObj = {
-        element: element,
-        foregroundColor: function (color) {
-            if (color) {
-                element.style.backgroundColor = color;
-            }
-            return circleObj;
-        },
-        onClick: function (callback) {
-            if (callback) {
-                element.addEventListener('click', callback);
-                element.style.cursor = 'pointer';
-            }
-            return circleObj;
-        },
-    };
-
-    // Function to calculate and set the minimum dimension as the size
-    const setCircleSize = () => {
-        const containerWidth = element.parentElement.clientWidth;
-        const containerHeight = element.parentElement.clientHeight;
-        console.log('containerWidth', containerWidth, 'containerHeight', containerHeight);
-        const minDimension = Math.min(containerWidth, containerHeight);
-        element.style.width = containerWidth + 'px';
-        element.style.height = containerWidth + 'px';
-    };
-
-    // Listen for container size changes and adjust the size accordingly
-    const observer = new ResizeObserver(setCircleSize);
-    //observer.observe(element);
-
-    return circleObj;
-}
+import { Body, Text, HStack, VStack, Spacer, Circle, Image, ZStack, ScrollView } from "./jysuis.js";
 
 
-
-
-
-// Define an HStack function
-function HStack(...children) {
-    const stackElement = document.createElement('div');
-    stackElement.style.display = 'flex';
-    stackElement.style.flexDirection = 'row';
-    stackElement.style.justifyContent = 'space-between'; // Equal spacing between children
-
-    children.forEach((child) => {
-        if (child && child.element) {
-            stackElement.appendChild(child.element);
-        }
-    });
-
-    const stackObj = {
-        element: stackElement,
-    };
-
-    return stackObj;
-}
-
-// Define a VStack function
-function VStack(...children) {
-    const stackElement = document.createElement('div');
-    stackElement.style.display = 'flex';
-    stackElement.style.flexDirection = 'column';
-    stackElement.style.justifyContent = 'space-between'; // Center children vertically
-
-    children.forEach((child) => {
-        if (child && child.element) {
-            stackElement.appendChild(child.element);
-        }
-    });
-
-    const stackObj = {
-        element: stackElement,
-    };
-
-    return stackObj;
-}
-
-
-function Spacer() {
-    const spacerElement = document.createElement('div');
-    spacerElement.style.flex = 1; // Use flexGrow to create space
-
-    const spacerObj = {
-        element: spacerElement,
-    };
-
-    return spacerObj;
-}
-
-// Define a Body function
-function Body(...children) {
-    const bodyElement = document.createElement('div');
-    bodyElement.style.display = 'flex';
-    bodyElement.style.flexDirection = 'column';
-    bodyElement.style.justifyContent = 'space-between'; // Center children vertically
-
-    bodyElement.style.width = '100%';
-    bodyElement.style.height = '100%';
-    bodyElement.style.position = 'fixed';
-    bodyElement.style.top = '0';
-    bodyElement.style.left = '0';
-    children.forEach((child) => {
-        if (child && child.element) {
-            bodyElement.appendChild(child.element);
-        }
-    });
-
-    const bodyObj = {
-        element: bodyElement,
-    };
-
-    document.body.appendChild(bodyObj.element);
-
-    return bodyObj;
-}
-
-// Usage example with HStack and VStack:
-
-
-
-
+/*
 Body(
-    Text("My First Web Site")
-        .fontSize("50px"),
-    Text("designed with JavaScriptUI"),
+    HStack(
+        Spacer(),
+        VStack(
+            Text("My First Web Site")
+                .fontSize("50px"),
+            Text("designed with JavaScriptUI"),
+            Spacer(),
+        ),
+        Spacer(),
+        VStack(
+            Text("MENU")
+                .fontSize("20px"),
+            Text("POTATOE"),
+            Text("TOMATO"),
+            Text("CARROT"),
+            Text("BANANA"),
+        )
+
+    ),
     Spacer(),
     HStack(
         Circle()
@@ -206,9 +47,87 @@ Body(
         Circle(),
         Spacer()
     ),
-    Spacer()
+    
+    ZStack(
+        Text("Hello World"),
+        Circle()
+    )
         
 )
+*/
+
+
+const scrollViewContent = VStack(
+    Text("Item 1").fontFamily('Averia Libre'),
+    Text("Item 2").fontFamily('Averia Libre'),
+    Text("Item 3").fontFamily('Averia Libre'),
+    Text("Item 4").fontFamily('Averia Libre'),
+    Text("Item 5").fontFamily('Averia Libre'),
+    Text("Item 6").fontFamily('Averia Libre'),
+    Text("Item 7").fontFamily('Averia Libre'),
+    Text("Item 8").fontFamily('Averia Libre'),
+    Text("Item 9").fontFamily('Averia Libre'),
+    Text("Item 10").fontFamily('Averia Libre'),
+    Text("Item 11").fontFamily('Averia Libre'),
+    Text("Item 12").fontFamily('Averia Libre'),
+    Text("Item 13").fontFamily('Averia Libre'),
+    Text("Item 14").fontFamily('Averia Libre'),
+    Text("Item 15").fontFamily('Averia Libre'),
+);
+
+const myScrollView = ScrollView(
+    scrollViewContent,
+).height('100px')
+
+
+
+const circlesComponent = 
+    HStack(
+        Spacer(),
+        ZStack(
+            Circle().foregroundColor("green"),
+            Text("1").fontSize("50px"),
+        ),
+        Spacer(),
+        ZStack(
+            Circle().foregroundColor("red"),
+            Text("2").fontSize("50px"),
+        ),
+        Spacer(),
+        ZStack(
+            Circle().foregroundColor("blue"),
+            Text("3").fontSize("50px"),
+        ),
+        Spacer(),
+    )
+
+Body(
+    Spacer(),
+    HStack(
+        Spacer(),
+            Image('theo.jpg')
+                .width('200px')
+                .onClick(() => alert('Image Clicked')),
+        Spacer(),
+    ),
+    Spacer(),
+    myScrollView,
+    Spacer(),
+    Text("My First Web Site")
+        .fontSize("50px")
+        .fontFamily('Luckiest Guy')
+        .foregroundColor("red"),
+
+    Spacer(),
+    circlesComponent,
+    Spacer(),
+    Text("Crafted with jysuis !")
+        .fontFamily('Reenie Beanie')
+        .fontSize('30px'),
+    Spacer()
+)
+
+
 /*
 
 Body(
@@ -234,6 +153,38 @@ Body(
     Text("I'm happy"),
     Spacer()
 )
+*/
+/*
+const scrollViewContent = VStack(
+    Text("Item 1"),
+    Text("Item 2"),
+    Text("Item 3"),
+    Text("Item 4"),
+    Text("Item 5"),
+    Text("Item 6"),
+    Text("Item 7"),
+    Text("Item 8"),
+    Text("Item 9"),
+    Text("Item 10"),
+    Text("Item 11"),
+    Text("Item 12"),
+    Text("Item 13"),
+    Text("Item 14"),
+    Text("Item 15"),
+);
+
+const myScrollView = ScrollView(
+    scrollViewContent,
+);
+
+Body(
+    Spacer(),
+    Text("My Scrollable View")
+        .fontSize("30px"),
+    Spacer(),
+    myScrollView, // Add the scrollable view using the ScrollView() function
+    Spacer()
+);
 */
 
 
