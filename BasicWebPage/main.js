@@ -58,22 +58,23 @@ Body(
 
 
 const scrollViewContent = VStack(
-    Text("Item 1").fontFamily('Averia Libre'),
-    Text("Item 2").fontFamily('Averia Libre'),
-    Text("Item 3").fontFamily('Averia Libre'),
-    Text("Item 4").fontFamily('Averia Libre'),
-    Text("Item 5").fontFamily('Averia Libre'),
-    Text("Item 6").fontFamily('Averia Libre'),
-    Text("Item 7").fontFamily('Averia Libre'),
-    Text("Item 8").fontFamily('Averia Libre'),
-    Text("Item 9").fontFamily('Averia Libre'),
-    Text("Item 10").fontFamily('Averia Libre'),
-    Text("Item 11").fontFamily('Averia Libre'),
-    Text("Item 12").fontFamily('Averia Libre'),
-    Text("Item 13").fontFamily('Averia Libre'),
-    Text("Item 14").fontFamily('Averia Libre'),
-    Text("Item 15").fontFamily('Averia Libre'),
+    Text("🌮 Tacos are life!").fontFamily('Averia Libre'),
+    Text("🍕 Pizza is bae!").fontFamily('Averia Libre'),
+    Text("🍔 Burgers for the win!").fontFamily('Averia Libre'),
+    Text("🍦 Ice cream heaven!").fontFamily('Averia Libre'),
+    Text("🥨 Pretzels are twisted!").fontFamily('Averia Libre'),
+    Text("🍟 Fries before guys!").fontFamily('Averia Libre'),
+    Text("🍩 Donuts are dope!").fontFamily('Averia Libre'),
+    Text("🍭 Candy crush!").fontFamily('Averia Libre'),
+    Text("🥤 Soda pop party!").fontFamily('Averia Libre'),
+    Text("🍪 Cookies make me smile!").fontFamily('Averia Libre'),
+    Text("🥤 Sip, sip, hooray!").fontFamily('Averia Libre'),
+    Text("🍉 Watermelon wonder!").fontFamily('Averia Libre'),
+    Text("🍓 Berrylicious bliss!").fontFamily('Averia Libre'),
+    Text("🍰 Sweet as pie!").fontFamily('Averia Libre'),
+    Text("🍩 Donuts make my day!").fontFamily('Averia Libre'),
 );
+
 
 const myScrollView = ScrollView(
     scrollViewContent,
@@ -154,38 +155,7 @@ Body(
     Spacer()
 )
 */
-/*
-const scrollViewContent = VStack(
-    Text("Item 1"),
-    Text("Item 2"),
-    Text("Item 3"),
-    Text("Item 4"),
-    Text("Item 5"),
-    Text("Item 6"),
-    Text("Item 7"),
-    Text("Item 8"),
-    Text("Item 9"),
-    Text("Item 10"),
-    Text("Item 11"),
-    Text("Item 12"),
-    Text("Item 13"),
-    Text("Item 14"),
-    Text("Item 15"),
-);
 
-const myScrollView = ScrollView(
-    scrollViewContent,
-);
-
-Body(
-    Spacer(),
-    Text("My Scrollable View")
-        .fontSize("30px"),
-    Spacer(),
-    myScrollView, // Add the scrollable view using the ScrollView() function
-    Spacer()
-);
-*/
 
 
 
